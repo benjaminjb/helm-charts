@@ -5,6 +5,9 @@ metadata:
   name: {{ include "alertmanager.fullname" . }}
   labels:
     {{- include "alertmanager.labels" . | nindent 4 }}
+    {{- with .Values.extraConfigmapLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   {{- with .Values.configAnnotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
